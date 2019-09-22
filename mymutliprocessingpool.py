@@ -1,15 +1,14 @@
 import time
 import concurrent.futures
-import requests
 
 start = time.perf_counter()
 
 def run_me(seconds):
-    print(f'Thread for {seconds} second(s) started')
+    print(f'Processing for {seconds} second(s) started')
     time.sleep(seconds)
-    print(f'Thread stopped after {seconds} second(s)')
+    print(f'Processing stopped after {seconds} second(s)')
 
-with concurrent.futures.ThreadPoolExecutor() as executor:
+with concurrent.futures.ProcessPoolExecutor() as executor:
     executor.map(run_me, [1,2,3,4])
 
 finish = time.perf_counter()
